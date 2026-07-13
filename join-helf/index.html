@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join a household on Helf</title>
+  <meta name="description" content="You've been invited to a household on Helf — weekly meal plans for the whole household." />
+  <meta property="og:title" content="Join a household on Helf" />
+  <meta property="og:description" content="Get the app and enter your invite code to join your household's meal plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Neuton:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #467e53;
+      --brand-bright: #58a169;
+      --bg: #faf5f1;
+      --bg-alt: #ebeae7;
+      --surface: #ffffff;
+      --text: #332b1c;
+      --text-muted: #726958;
+      --border: #d7d6d0;
+      --positive-bg: #f4f9f5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+    main { width: 100%; max-width: 420px; text-align: center; padding-top: 8vh; }
+    .wordmark {
+      font-family: "Neuton", Georgia, serif;
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--brand);
+      letter-spacing: -0.5px;
+    }
+    h1 {
+      font-family: "Neuton", Georgia, serif;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 1.2;
+      margin: 28px 0 10px;
+    }
+    .sub { color: var(--text-muted); font-size: 16px; line-height: 1.5; }
+    .code-card {
+      margin: 32px 0 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 16px;
+      box-shadow: 0 2px 12px rgba(51, 43, 28, 0.06);
+    }
+    .code-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .code {
+      font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      color: var(--text);
+      word-break: break-all;
+    }
+    .copy-btn {
+      margin-top: 14px;
+      background: var(--positive-bg);
+      color: var(--brand);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+    .copy-btn:active { background: var(--bg-alt); }
+    .hint { font-size: 13px; color: var(--text-muted); margin-top: 10px; }
+    .steps {
+      text-align: left;
+      margin: 36px 0 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 20px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--bg-alt);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--positive-bg);
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .step p { font-size: 15px; line-height: 1.45; }
+    .step p b { font-weight: 600; }
+    .step p span { color: var(--text-muted); }
+    .cta {
+      display: block;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 16px 24px;
+      margin-top: 8px;
+    }
+    .cta:active { background: var(--brand-bright); }
+    footer { margin-top: auto; padding-top: 48px; font-size: 13px; color: var(--text-muted); }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="wordmark">helf</div>
+    <h1>You’ve been invited to a household</h1>
+    <p class="sub">Helf plans the week’s meals around everyone in the household — including you.</p>
+
+    <div class="code-card" id="codeCard" hidden>
+      <div class="code-label">Your invite code</div>
+      <div class="code" id="code"></div>
+      <button class="copy-btn" id="copyBtn" type="button">Copy code</button>
+      <p class="hint">You’ll type this into the app in a minute — keep this page open.</p>
+    </div>
+
+    <div class="code-card" id="noCodeCard" hidden>
+      <div class="code-label">No code in this link</div>
+      <p class="sub">Ask the person who invited you to re-share the invite — the message includes an 8-character code.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div>
+        <p><b>Install Helf.</b> <span>While we’re in beta, it’s delivered through Apple’s TestFlight app — accept the TestFlight invitation you were sent by email, or ask your inviter to add you.</span></p>
+      </div>
+      <div class="step"><div class="step-num">2</div>
+        <p><b>Open Helf and sign in with Apple.</b></p>
+      </div>
+      <div class="step"><div class="step-num">3</div>
+        <p><b>Tap “Have an invite code?”</b> <span>on the first screen and enter the code above.</span></p>
+      </div>
+    </div>
+
+    <a class="cta" href="https://apps.apple.com/app/testflight/id899247664">Get TestFlight</a>
+  </main>
+
+  <footer>
+    <a href="https://richbarber.github.io/helf-legal/">Privacy &amp; Terms</a>
+  </footer>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var raw = (params.get('code') || '').toUpperCase().replace(/[^A-Z2-9]/g, '');
+      var codeCard = document.getElementById('codeCard');
+      var noCodeCard = document.getElementById('noCodeCard');
+      if (raw.length === 8) {
+        document.getElementById('code').textContent = raw;
+        codeCard.hidden = false;
+        var btn = document.getElementById('copyBtn');
+        btn.addEventListener('click', function () {
+          navigator.clipboard.writeText(raw).then(function () {
+            btn.textContent = 'Copied ✓';
+            setTimeout(function () { btn.textContent = 'Copy code'; }, 2000);
+          });
+        });
+      } else {
+        noCodeCard.hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>
