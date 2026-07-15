@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "8B5P9PHLCV.com.richbarber.helf",
+        "appIDs": ["8B5P9PHLCV.com.richbarber.helf"],
+        "paths": ["/join-helf", "/join-helf/*"],
+        "components": [
+          { "/": "/join-helf" },
+          { "/": "/join-helf/*" }
+        ]
+      }
+    ]
+  }
+}
